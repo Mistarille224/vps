@@ -82,6 +82,10 @@ if [ $real_addr == $local_addr ] ; then
  wget https://github.com/atrandys/trojan/raw/master/trojan-cli.zip
  unzip trojan-cli.zip
  cp /usr/src/trojan-cert/fullchain.cer /usr/src/trojan-cli/fullchain.cer
+ green "======================="
+ yellow "请输入端口"
+ green "======================="
+ read your_port
  trojan_passwd=$(cat /dev/urandom | head -1 | md5sum | head -c 8)
  cat > /usr/src/trojan-cli/config.json <<-EOF
 {
@@ -89,7 +93,7 @@ if [ $real_addr == $local_addr ] ; then
     "local_addr": "127.0.0.1",
     "local_port": 1080,
     "remote_addr": "$your_domain",
-    "remote_port": 1234,
+    "remote_port": $your_port,
     "password": [
         "$trojan_passwd"
     ],
@@ -121,7 +125,7 @@ EOF
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
-    "local_port": 1234,
+    "local_port": $your_port,
     "remote_addr": "127.0.0.1",
     "remote_port": 80,
     "password": [
