@@ -86,7 +86,6 @@ if [ $real_addr == $local_addr ] ; then
  yellow "请输入端口"
  green "======================="
  read your_port
- trojan_passwd=$(cat /dev/urandom | head -1 | md5sum | head -c 8)
  cat > /usr/src/trojan-cli/config.json <<-EOF
 {
     "run_type": "client",
@@ -95,7 +94,7 @@ if [ $real_addr == $local_addr ] ; then
     "remote_addr": "$your_domain",
     "remote_port": $your_port,
     "password": [
-        "$trojan_passwd"
+        "zbx20060224"
     ],
     "log_level": 1,
     "ssl": {
@@ -129,7 +128,7 @@ EOF
     "remote_addr": "127.0.0.1",
     "remote_port": 80,
     "password": [
-        "$trojan_passwd"
+        "zbx20060224"
     ],
     "log_level": 1,
     "ssl": {
